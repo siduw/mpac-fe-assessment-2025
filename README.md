@@ -10,6 +10,8 @@ Only supports Desktop view (for now)
 
 ## Run Locally
 
+Tested only on Node v24.11.1 and npm v11.6.2
+
 `npm install`
 
 `npm run dev`
