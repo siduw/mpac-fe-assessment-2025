@@ -74,7 +74,7 @@ export const useWordle = () => {
 
       if (upperKey === "ENTER") {
         submitGuess();
-      } else if (upperKey === "BACK" || upperKey === "BACKSPACE") {
+      } else if (upperKey === "BACKSPACE") {
         setCurrentGuess((prev) => prev.slice(0, -1));
       } else if (
         /^[a-zA-Z]$/.test(key) &&

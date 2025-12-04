@@ -15,10 +15,9 @@ const GameContainer = () => {
       if (
         /^[a-zA-Z]$/.test(key) ||
         key === "Enter" ||
-        key === "Backspace" ||
-        key === "Back"
+        key === "Backspace"
       ) {
-        handleInput(key.toUpperCase());
+        handleInput(key);
       } else {
         return;
       }

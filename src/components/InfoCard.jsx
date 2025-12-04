@@ -12,6 +12,7 @@ const InfoCard = () => {
           This submission if for MPAC Technical Asessment
         </p>
         <p className="text-gray-600">Made by Siddharth Vagavolu</p>
+         <p className="text-gray-600">Use Keys: a-zA-Z, Enter, Backspace</p>
         <p className="text-red-600">{feedback}</p>
       </div>
     </div>
