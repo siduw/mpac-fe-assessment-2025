@@ -1,11 +1,11 @@
-import './App.css'
+import { GameProvider } from "./contexts/GameContext";
+import GameContainer from "./layouts/GameContainer";
+import "./index.css";
 
-function App() {
-
+export default function App() {
   return (
-    <>
-    </>
-  )
+    <GameProvider>
+      <GameContainer />
+    </GameProvider>
+  );
 }
-
-export default App
