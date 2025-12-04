@@ -2,7 +2,7 @@
 
 Tech Used: Vite for setup, React as frontend framework, Tailwind CSS for styling
 
-React Hooks used: useState, useEffect, useContext, useMemo, useCallback
+React Hooks used: useState, useEffect, useContext, useCallback
 
 Game state is managed by useWordle() and is shared by the components using useContext()
 

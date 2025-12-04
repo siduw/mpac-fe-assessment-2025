@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import { CONFIG, SCORE } from "../utils/config";
 
 export const useWordle = () => {
@@ -9,12 +9,9 @@ export const useWordle = () => {
   const [feedback, setFeedback] = useState("");
 
   // Computed
-  const isGameWon = useMemo(() => {
-    if (pastGuesses.length === 0) return false;
-    return pastGuesses[pastGuesses.length - 1].score.every(
-      (s) => s === SCORE.CORRECT
-    );
-  }, [pastGuesses]);
+  const isGameWon =
+    pastGuesses.length > 0 &&
+    pastGuesses[pastGuesses.length - 1].score.every((s) => s === SCORE.CORRECT);
 
   const isGameLost = !isGameWon && pastGuesses.length >= CONFIG.MAX_GUESSES;
   const isGameOver = isGameWon || isGameLost;
