@@ -1,4 +1,4 @@
-import { GameProvider } from "./contexts/GameContext";
+import { GameProvider } from "./providers/GameProvider";
 import GameContainer from "./layouts/GameContainer";
 import "./index.css";
 

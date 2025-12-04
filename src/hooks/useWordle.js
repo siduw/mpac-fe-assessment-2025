@@ -1,6 +1,24 @@
 import { useState, useCallback } from "react";
 import { CONFIG, SCORE } from "../utils/config";
 
+import * as yup from "yup";
+
+const apiResponseSchema = yup.object({
+  isvalidword: yup.boolean().required(),
+  score: yup
+    .array()
+    .ensure()
+    .when("isvalidword", {
+      is: true,
+      then: (schema) =>
+        schema
+          .length(5)
+          .of(yup.number().oneOf([0, 1, 2]))
+          .required(),
+      otherwise: (schema) => schema.length(0).required(),
+    }),
+});
+
 export const useWordle = () => {
   // State
   const [pastGuesses, setPastGuesses] = useState([]);
@@ -44,7 +62,19 @@ export const useWordle = () => {
 
       if (!response.ok) throw new Error(`Server returned ${response.status}`);
 
-      const data = await response.json();
+      const rawData = await response.json();
+
+      // defensive checks
+      let data;
+      try {
+        // validateSync throws an error if validation fails
+        // stripUnknown: true removes any extra fields the API might send
+        data = apiResponseSchema.validateSync(rawData, { stripUnknown: true });
+      } catch (validationError) {
+        console.error("Validation Failed:", validationError.errors);
+        throw new Error("Invalid data received from server");
+      }
+      // defensive checks end
 
       if (!data.isvalidword) {
         setFeedback("This is not a valid word!");
